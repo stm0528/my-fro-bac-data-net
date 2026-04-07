@@ -42,7 +42,7 @@ app.post('/api/texts', async (req, res) => {
     });
   } catch (error) {
     console.error('Error saving text:', error);
-    res.status(500).json({ error: 'Failed to save text to database' });
+    res.status(500).json({ error: 'Failed to save text to database: ' + error.message });
   }
 });
 
