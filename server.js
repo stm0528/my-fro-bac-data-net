@@ -21,6 +21,27 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
+async function initializeDatabase() {
+  try {
+    const connection = await pool.getConnection();
+    await connection.query(`
+      CREATE TABLE IF NOT EXISTS messages (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          content TEXT NOT NULL,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log("Database table 'messages' initialized successfully!");
+    connection.release();
+  } catch (error) {
+    console.error("Warning: Could not initialize database yet, MySQL may still be booting:", error.message);
+  }
+}
+
+// Attempt initialization a few times to allow MySQL to boot
+setTimeout(initializeDatabase, 5000);
+setTimeout(initializeDatabase, 15000);
+
 // Endpoint to save text
 app.post('/api/texts', async (req, res) => {
   try {
