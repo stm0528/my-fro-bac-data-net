@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drop a Note - MySQL Connected</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+    </div>
+    
+    <div class="container glass-card">
+        <header>
+            <h1>Drop a Note</h1>
+            <p class="subtitle">Securely store your thoughts into MySQL.</p>
+        </header>
+
+        <form id="text-form">
+            <div class="input-group">
+                <textarea id="content-input" placeholder="What's on your mind?..." rows="4" required></textarea>
+            </div>
+            
+            <button type="submit" id="submit-btn">
+                <span>Save to Database</span>
+                <div class="loader hidden" id="btn-loader"></div>
+            </button>
+            <div id="status-message" class="hidden"></div>
+        </form>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
